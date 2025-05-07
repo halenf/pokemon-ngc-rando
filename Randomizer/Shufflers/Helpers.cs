@@ -89,11 +89,6 @@ namespace Randomizer.Shufflers
             {
                 moveSet = Enumerable.Repeat(ExtractorConstants.MetronomeIndex, moveSetCount).ToArray();
             }
-            else if (options.UseLevelUpMoves)
-            {
-                // not randomizing moves? pick level up moves then
-                moveSet = GetLevelUpMoveset(random, options, pokemon, extractedGame);
-            }
             else if (options.LegalMovesOnly)
             {
                 // change our move filter to only include learnable moves for this pokemon
@@ -118,7 +113,8 @@ namespace Randomizer.Shufflers
             }
             else
             {
-                moveSet = null;
+                // not randomizing moves? pick level up moves then
+                moveSet = GetLevelUpMoveset(random, options, pokemon, extractedGame);
             }
 
             if (moveSet != null)
